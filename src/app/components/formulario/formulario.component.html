@@ -1,0 +1,40 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-3 mb-3">
+            <label for="valor1">Valor 1</label>
+            <input type="number" id="valor1" class="form-control" formControlName="valor1"
+                [class.invalid]="controls['valor1'].invalid && (controls['valor1'].touched || controls['valor1'].dirty)">
+        </div>
+        <ul id="error-valor1" class="error"
+            *ngIf="controls['valor1'].invalid && (controls['valor1'].touched || controls['valor1'].dirty)">
+            <li *ngIf="controls['valor1'].hasError('required')">Campo obrigatório</li>
+            <li *ngIf="controls['valor1'].hasError('min')">Valor deve ser maior ou igual a 0</li>
+            <li *ngIf="controls['valor1'].hasError('max')">Valor deve ser menor ou igual a 100</li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-3 mb-3">
+            <label for="valor2">Valor 2</label>
+            <input type="number" id="valor2" class="form-control" formControlName="valor2"
+                [class.invalid]="controls['valor2'].invalid && (controls['valor2'].touched || controls['valor2'].dirty)">
+        </div>
+        <ul id="error-valor2" class="error"
+            *ngIf="controls['valor2'].invalid && (controls['valor2'].touched || controls['valor2'].dirty)">
+            <li *ngIf="controls['valor2'].hasError('required')">Campo obrigatório</li>
+            <li *ngIf="controls['valor2'].hasError('min')">Valor deve ser maior ou igual a 100</li>
+            <li *ngIf="controls['valor2'].hasError('max')">Valor deve ser menor ou igual a 200</li>
+        </ul>
+    </div>
+    <div>
+        <button class="btn btn-success mb-3" (click)="salvar()" [disabled]="form.invalid">Salvar</button>
+        <div class="alert alert-success" role="alert" id="mensagem-sucesso" *ngIf="mensagemSalvoComSucesso">
+            Salvo com sucesso
+        </div>
+        <div class="alert alert-danger" role="alert" id="mensagem-erro" *ngIf="mensagemErroAoSalvar">
+            Erro ao salvar
+        </div>
+        <div class="alert alert-danger" role="alert" id="mensagem-erro-par" *ngIf="mensagemErroPar">
+            Salve uma soma de números que seja par
+        </div>
+    </div>
+</form>

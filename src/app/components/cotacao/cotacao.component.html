@@ -1,0 +1,16 @@
+<div>
+    <div class="row">
+        <div class="col">
+            <button id="btn-cotacao" class="btn btn-primary" (click)="buscarCotacao()">Buscar cotação</button>
+        </div>
+    </div>
+
+    <div *ngIf="cotacao$ | async" class="mt-3" id="cotacao-container">
+        <div id="valor-dolar">Valor do dólar para hoje:
+            <strong>
+                {{ (cotacao$ | async)?.USDBRL?.bid | currency:'BRL':'symbol' }}
+            </strong>
+            
+        </div>
+    </div>
+</div>
